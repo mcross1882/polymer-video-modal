@@ -9,7 +9,7 @@
         </div>
         
         <div class="video-modal-content">
-          <video width="{{ videoWidth }}" height="{{ videoHeight }}">
+          <video width="{{ videoWidth }}" height="{{ videoHeight }}" controls>
             <source src="{{ mp4 }}" type="video/mp4"></source>
             <source src="{{ ogg }}" type="video/ogg"></source>
           </video>
@@ -41,7 +41,7 @@
       }
       
       .video-modal-container .video-modal-content {
-        margin: 0px 1em;
+        margin: 1em;
       }
       
       .video-modal-heading .title {

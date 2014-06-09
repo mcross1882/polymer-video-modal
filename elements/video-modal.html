@@ -2,10 +2,10 @@
 
 <polymer-element name="video-modal" attributes="header mp4 ogg videoWidth videoHeight" noscript>
   <template>
-    <div id="video-modal-overlay" class="video-modal-overlay">    
-      <div class="video-modal-container">
+    <div id="video-modal-overlay" class="video-modal-overlay">   
+      <div id="video-modal-overlay" class="video-modal-container">
         <div class="video-modal-heading">
-          <div class="title">{{ header }}<a href class="close">X</a></div>
+          <div class="title">{{ header }} <button class="close">X</button></div>
         </div>
         
         <div class="video-modal-content">
@@ -45,11 +45,12 @@
       }
       
       .video-modal-heading .title {
-        margin: 0.25em 0px 0.5em 0px;
         text-transform: uppercase;
+        text-align: left;
         font-size: 1.25em;
         font-weight: bold;
         border-bottom: 5px solid #888;
+        margin: 0.25em 0px 0.5em 0px;
         margin-bottom: 0px;
         padding: 0.5em 1em;
       }
@@ -59,47 +60,59 @@
         text-decoration: none;
         color: #303030;
         transition: color 0.5s ease;
+        pointer: cursor;
       }
       
       .video-modal-heading .close:hover {
         color: #a8a8a8;
+        pointer: cursor;
       }
     </style>
   </template>
   
   <script>
-    var VideoModal = {
-      header: ''
-      , mp4: ''
-      , ogg: ''
-      , videoWidth: 640
-      , videoHeight: 480
+    (function() {
+    /*
+      document.registerElement("video-modal", {
+        prototype: VideoModalPrototype
+      });
+   */
+      var VideoModalPrototype = Object.create(HTMLElement.prototype, {
+        modal: {
+          elementName: 'video-modal'
+          , header: ''
+          , mp4: ''
+          , ogg: ''
+          , videoWidth: 640
+          , videoHeight: 480
+          
+          , ready: function() {
+            this.registerDisplayEvents();
+          }
+          
+          , registerDisplayEvents: function() {
+            console.log(this);
+          }
+          
+          , createVideoAndOverlay: function() {
+            var overlay = this.getOverlay();
+            overlay.classname = overlay.className.replace("hide", "");
+          }
+          
+          , removeVideoAndOverlay: function() {
+            var overlay = getOverlay();
+            overlay.className = overlay.className + " hide";
+          }
+          
+          , getOverlay: function() {
+            return document.getElementById('video-modal-overlay');
+          }
+        }
+      });
       
-      , onReady: function() {
-        this.registerDisplayEvent();
-        this.registerCloseEvent();
-      }
+      console.log(VideoModalPrototype);
       
-      , registerDisplayEvent: function() {
-        this.addEventListener('click', function() {
-          document.getElementById('video-modal-overlay').removeClass('hide');
-        });
-      }
-      
-      , registerCloseEvent: function() {
-        var closeButton = document.getElementById('close-button');
-        closeButton.addEventListener('click', this.onCloseButtonClicked);
-      }
-      
-      , onCloseButtonClicked: function() {
-        this
-          .getParent() // heading
-          .getParent() // container
-          .getParent() // overlay
-          .addClass('hide');
-      }
-    };
-    
-    Polymer('video-modal', VideoModal);
+      Polymer(VideoModalPrototype.elementName, VideoModalPrototype);
+    })();
   </script>
 </polymer-element>

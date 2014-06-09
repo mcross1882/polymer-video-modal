@@ -4,14 +4,41 @@
     <script src="bower_components/platform/platform.js"></script>
     
     <link rel="import" href="elements/video-modal.html">
+    
+    <style type="text/css">
+      * {
+        font-family: arial;
+        text-transform: uppercase;
+      }
+      
+      .clickable {
+        padding: 1em;
+        color: #808080;
+        border: 3px dashed #808080;
+        border-radius: 4px;
+      }
+      
+      .clickable:hover {
+        color: #a8a8a8;
+        border-color: #a8a8a8;
+        cursor: pointer;
+      }
+      
+      .page {
+        text-align: center;
+      }
+    </style>
   </head>
-  <body>
-    <video-modal 
-      header="My Video Title"
-      videoWidth="720"
-      mp4="videos/sample-mp4.mpg" 
-      ogg="videos/sample-ogg.ogg">
-      Put some clickable content here...
-    </video-modal>
+  <body>    
+    <div class="page">
+      <h1>Polymer Video Modal</h1>
+      <video-modal
+        header="My Video Title"
+        videoWidth="720"
+        mp4="videos/sample-mp4.mpg" 
+        ogg="videos/sample-ogg.ogg">
+        <span class="clickable">Some clickable content</span>
+      </video-modal>
+    </div>
   </body>
 </html>

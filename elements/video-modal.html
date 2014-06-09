@@ -2,7 +2,7 @@
 
 <polymer-element name="video-modal" attributes="title mp4 ogg width height" noscript>
   <template>
-    <div class="video-modal-overlay">    
+    <div id="video-modal-overlay" class="video-modal-overlay">    
       <div class="video-modal-container">
         <div class="video-modal-heading">
           <div class="title">{{ title }}<a href class="close">X</a></div>
@@ -27,6 +27,10 @@
         background-color: #000;
         opacity: 0.75;
         z-index: 1000;
+      }
+      
+      .video-modal-overlay.hide {
+        display: none;
       }
       
       .video-modal-container {
@@ -72,7 +76,14 @@
       , height: 480
       
       , onReady: function() {
+        this.registerDisplayEvent();
         this.registerCloseEvent();
+      }
+      
+      , registerDisplayEvent: function() {
+        this.addEventListener('click', function() {
+          document.getElementById('video-modal-overlay').removeClass('hide');
+        });
       }
       
       , registerCloseEvent: function() {
@@ -85,7 +96,7 @@
           .getParent() // heading
           .getParent() // container
           .getParent() // overlay
-          .remove();
+          .addClass('hide');
       }
     };
     

@@ -1,5 +1,5 @@
 {
-  "name": "polymer-video-popout",
+  "name": "polymer-video-modal",
   "version": "0.0.1",
   "authors": [
     "Matthew Cross <matthew@pmg.co>"
@@ -12,7 +12,7 @@
     "modal"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/mcross1882/polymer-video-popout",
+  "homepage": "https://github.com/mcross1882/polymer-video-modal",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -21,7 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "core-elements": "Polymer/core-elements#~0.3.1",
     "polymer": "Polymer/polymer#~0.3.1",
     "TemplateBinding": "Polymer/TemplateBinding#~0.3.1"
   }

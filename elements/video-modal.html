@@ -1,15 +1,15 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="video-modal" attributes="title mp4 ogg width height" noscript>
+<polymer-element name="video-modal" attributes="header mp4 ogg videoWidth videoHeight" noscript>
   <template>
     <div id="video-modal-overlay" class="video-modal-overlay">    
       <div class="video-modal-container">
         <div class="video-modal-heading">
-          <div class="title">{{ title }}<a href class="close">X</a></div>
+          <div class="title">{{ header }}<a href class="close">X</a></div>
         </div>
         
         <div class="video-modal-content">
-          <video width="{{ width }}" height="{{ height }}">
+          <video width="{{ videoWidth }}" height="{{ videoHeight }}">
             <source src="{{ mp4 }}" type="video/mp4"></source>
             <source src="{{ ogg }}" type="video/ogg"></source>
           </video>
@@ -40,6 +40,10 @@
         display: inline-block;
       }
       
+      .video-modal-container .video-modal-content {
+        margin: 0px 1em;
+      }
+      
       .video-modal-heading .title {
         margin: 0.25em 0px 0.5em 0px;
         text-transform: uppercase;
@@ -60,20 +64,16 @@
       .video-modal-heading .close:hover {
         color: #a8a8a8;
       }
-      
-      .video-modal-container .video-modal-content {
-        margin: 1em;
-      }
     </style>
   </template>
   
   <script>
     var VideoModal = {
-      title: ''
+      header: ''
       , mp4: ''
       , ogg: ''
-      , width: 640
-      , height: 480
+      , videoWidth: 640
+      , videoHeight: 480
       
       , onReady: function() {
         this.registerDisplayEvent();

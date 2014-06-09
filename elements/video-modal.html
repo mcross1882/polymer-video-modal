@@ -1,0 +1,105 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="video-modal" attributes="header mp4 ogg videoWidth videoHeight" noscript>
+  <template>
+    <div id="video-modal-overlay" class="video-modal-overlay">    
+      <div class="video-modal-container">
+        <div class="video-modal-heading">
+          <div class="title">{{ header }}<a href class="close">X</a></div>
+        </div>
+        
+        <div class="video-modal-content">
+          <video width="{{ videoWidth }}" height="{{ videoHeight }}">
+            <source src="{{ mp4 }}" type="video/mp4"></source>
+            <source src="{{ ogg }}" type="video/ogg"></source>
+          </video>
+        </div>
+      </div>
+    </div>
+  
+    <style>
+      .video-modal-overlay {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0.75;
+        z-index: 1000;
+      }
+      
+      .video-modal-overlay.hide {
+        display: none;
+      }
+      
+      .video-modal-container {
+        font-family: arial;
+        margin: 5% 20%;
+        background-color: #fff;
+        display: inline-block;
+      }
+      
+      .video-modal-container .video-modal-content {
+        margin: 0px 1em;
+      }
+      
+      .video-modal-heading .title {
+        margin: 0.25em 0px 0.5em 0px;
+        text-transform: uppercase;
+        font-size: 1.25em;
+        font-weight: bold;
+        border-bottom: 5px solid #888;
+        margin-bottom: 0px;
+        padding: 0.5em 1em;
+      }
+      
+      .video-modal-heading .close {
+        float: right;
+        text-decoration: none;
+        color: #303030;
+        transition: color 0.5s ease;
+      }
+      
+      .video-modal-heading .close:hover {
+        color: #a8a8a8;
+      }
+    </style>
+  </template>
+  
+  <script>
+    var VideoModal = {
+      header: ''
+      , mp4: ''
+      , ogg: ''
+      , videoWidth: 640
+      , videoHeight: 480
+      
+      , onReady: function() {
+        this.registerDisplayEvent();
+        this.registerCloseEvent();
+      }
+      
+      , registerDisplayEvent: function() {
+        this.addEventListener('click', function() {
+          document.getElementById('video-modal-overlay').removeClass('hide');
+        });
+      }
+      
+      , registerCloseEvent: function() {
+        var closeButton = document.getElementById('close-button');
+        closeButton.addEventListener('click', this.onCloseButtonClicked);
+      }
+      
+      , onCloseButtonClicked: function() {
+        this
+          .getParent() // heading
+          .getParent() // container
+          .getParent() // overlay
+          .addClass('hide');
+      }
+    };
+    
+    Polymer('video-modal', VideoModal);
+  </script>
+</polymer-element>

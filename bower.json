@@ -1,0 +1,27 @@
+{
+  "name": "polymer-video-modal",
+  "version": "0.0.1",
+  "authors": [
+    "Matthew Cross <matthew@pmg.co>"
+  ],
+  "description": "Polymer modal designed for video popouts.",
+  "keywords": [
+    "polymer",
+    "video",
+    "popout",
+    "modal"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mcross1882/polymer-video-modal",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.3.1",
+    "TemplateBinding": "Polymer/TemplateBinding#~0.3.1"
+  }
+}
